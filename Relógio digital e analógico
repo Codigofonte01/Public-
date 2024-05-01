@@ -1,0 +1,59 @@
+// See https://aka.ms/new-console-template for more information
+Console.WriteLine("Hello, World!");
+import tkinter as tk
+import time
+import datetime
+import random
+
+# Cria a janela principal
+root = tk.Tk()
+root.title("Relógio Digital e Analógico com Calendário e Termômetro")
+
+# Cria frames para o relógio digital, relógio analógico, calendário e termômetro
+digital_frame = tk.Frame(root)
+analog_frame = tk.Frame(root)
+calendar_frame = tk.Frame(root)
+thermometer_frame = tk.Frame(root)
+
+digital_frame.pack(side=tk.LEFT, padx = 20)
+analog_frame.pack(side=tk.LEFT, padx = 20)
+calendar_frame.pack(side=tk.LEFT, padx = 20)
+thermometer_frame.pack(side=tk.LEFT, padx = 20)
+
+# Relógio Digital
+digital_clock_label = tk.Label(digital_frame, font = ('Helvetica', 48), bg = 'black', fg = 'white')
+digital_clock_label.pack()
+
+# Relógio Analógico (Placeholder por simplicidade)
+analog_clock_placeholder = tk.Label(analog_frame, text = 'Placeholder do Relógio Analógico', bg = 'gray', width = 20, height = 10)
+analog_clock_placeholder.pack()
+
+# Calendário
+calendar_label = tk.Label(calendar_frame, font = ('Helvetica', 24), bg = 'black', fg = 'white')
+calendar_label.pack()
+
+# Termômetro (Placeholder por simplicidade)
+thermometer_label = tk.Label(thermometer_frame, font = ('Helvetica', 24), bg = 'black', fg = 'white')
+thermometer_label.pack()
+
+def update_time():
+    # Atualiza o relógio digital
+    current_time = time.strftime('%H:%M:%S')
+    digital_clock_label.config(text = current_time)
+
+    # Atualiza o calendário
+    current_date = datetime.datetime.now().strftime('%Y-%m-%d %A')
+    calendar_label.config(text = current_date)
+
+    # Atualiza o termômetro com uma temperatura aleatória
+    temperature = f"{random.uniform(20.0, 30.0):.2f} °C"
+    thermometer_label.config(text = temperature)
+
+    # Agenda a função update_time para ser chamada após 1 segundo
+    root.after(1000, update_time)
+
+# Chama update_time para iniciar o relógio
+update_time()
+
+# Executa o loop principal
+root.mainloop()
